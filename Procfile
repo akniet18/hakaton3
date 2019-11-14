@@ -1,0 +1,1 @@
+web: gunicorn prepod.wsgi --log-file -
