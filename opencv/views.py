@@ -26,11 +26,16 @@ class OpencvView(APIView):
 		s = OpencvSer(data = request.data)
 		if s.is_valid():
 			lists = s.validated_data['lists'].split(' ')
-			for i in lists:
-				a = OpencvModel.objects.filter(name__contains=i)
-				for j in a:
-					j.attnedance = 'true'
-					j.save()
+			
+			a = OpencvModel.objects.all()
+			for j in a:
+				for i in lists:
+					if j.name == i:
+						j.attnedance = 'true'
+						j.save()
+					else:
+						j.attnedance = 'false'
+						j.save()
 			return Response({'status': 'ok'})
 		else:
 			return Response(s.errors)
