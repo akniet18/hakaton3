@@ -8,6 +8,7 @@ router.register(r'rating', Rat, basename='rating')
 
 urlpatterns = [
 	path('', include(router.urls))
+	# path('', OpencvView.as_view())
 	# path('<int:pk>/', RatingView.as_view()),
 	# path('rating/', RatingApi.as_view())
 ]

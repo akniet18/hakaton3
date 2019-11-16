@@ -13,7 +13,24 @@ from rest_framework import filters
 
 
 
-class OpencvView(viewsets.ModelViewSet):
-	permission_classes = [permissions.AllowAny,]
-	serializer_class = OpencvSer
-	queryset = OpencvModel.objects.all()
+# class OpencvView(viewsets.ModelViewSet):
+# 	permission_classes = [permissions.AllowAny,]
+# 	serializer_class = OpencvSer
+# 	queryset = OpencvModel.objects.all()
+
+
+class OpencvView(APIView):
+	permission_classes = (permissions.AllowAny,)
+
+	def post(self, request):
+		s = OpencvSer(data = request.data)
+		if s.is_valid():
+			lists = s.validated_data['lists'].split(' ')
+			for i in lists:
+				a = OpencvModel.objects.filter(name__contains=i)
+				for j in a:
+					j.attnedance = 'true'
+					j.save()
+			return Response({'status': 'ok'})
+		else:
+			return Response(s.errors)
