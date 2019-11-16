@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'prapp',
     'users',
+    'opencv',
 
     'allauth',
     'allauth.account',
@@ -113,7 +114,7 @@ WSGI_APPLICATION = 'prepod.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'task3',
+        'NAME': 'hakaton3',
         'USER': 'postgres',
         'PASSWORD': 'pwd123',
         'HOST': 'localhost',

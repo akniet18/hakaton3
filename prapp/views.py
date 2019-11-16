@@ -17,6 +17,7 @@ User = get_user_model()
 
 class Rat(viewsets.ModelViewSet):
 	permission_classes = [permissions.IsAuthenticated,]
+	# permission_classes = [permissions.AllowAny,]
 	authentication_classes = [TokenAuthentication]
 
 	serializer_class = RatingSerializer
